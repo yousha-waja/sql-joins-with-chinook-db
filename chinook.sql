@@ -33,7 +33,7 @@ JOIN albums ON artists.ArtistId = albums.ArtistId
 JOIN tracks ON albums.AlbumId = tracks.AlbumId
 JOIN genres ON genres.GenreId = tracks.GenreId; */
 
-/* SELECT Tracks.Name, Tracks.NumberofTracks AS MAX_Number_of_Tracks
+SELECT Tracks.Name, Tracks.NumberofTracks AS MAX_Number_of_Tracks
 FROM (
     SELECT playlists.Name, COUNT(tracks.TrackId) as NumberofTracks
     FROM playlists
@@ -41,12 +41,5 @@ FROM (
     JOIN tracks ON tracks.TrackId = playlist_track.TrackId
     GROUP BY playlists.Name
 ) as Tracks
-ORDER BY Tracks.NumberofTracks DESC
-LIMIT 1; */
-
- SELECT playlists.Name, COUNT(tracks.TrackId) as NumberofTracks
-    FROM playlists
-    JOIN playlist_track ON playlists.PlaylistId = playlist_track.PlaylistId
-    JOIN tracks ON tracks.TrackId = playlist_track.TrackId
-    GROUP BY playlists.Name
-    HAVING COUNT(tracks.TrackId) = MAX(NumberofTracks)
+ORDER BY Tracks.NumberofTracks
+LIMIT 1;
